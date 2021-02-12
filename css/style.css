@@ -1,8 +1,49 @@
+.container {
+    margin: auto;
+    position: relative;
+    width: 50%;
+}
+
 .bg-canvas {
+    width: 400px;
+    height: 600px;
+    background-image: url("../img/bg.jpg");
     display: block;
     margin: auto;
-    background-image: url('/game3/img/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+.header-game {
+    border: 1px solid grey;
+    border-radius: 15px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    height: 30%;
+    width: 50%;
+    background-color: grey;
+}
+
+.play {
+    border: 1px solid crimson;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    background-color: crimson;
+    left: 0;
+    right: 0;
+    top: 50%;
+    position: absolute;
+    margin: auto;
+}
+
+.text-game {
+    font-size: 20px;
+    text-align: center;
+    color: white;
 }

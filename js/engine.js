@@ -13,10 +13,11 @@ let game = {
 let handle
 
 function gameStart() {
+    soundtrack.play()
     game.start()
     handle = new componentRect((game.canvas.width - 60) / 2, game.canvas.height - 60, 60, 60, "image", player)
+    gameRun()
 }
-gameStart()
 let incrase
 let scorePlayer = 0
 let health = 5
@@ -72,11 +73,11 @@ function gameRun() {
         cancelAnimationFrame(gameRun)
         clearInterval(incrase)
         alert("Game Over")
+        window.location.reload()
     } else {
         requestAnimationFrame(gameRun)
     }
 }
-gameRun()
 
 document.addEventListener('keydown', keydownHandler, false)
 document.addEventListener('keyup', keyupHandler, false)
@@ -86,11 +87,13 @@ function keydownHandler(event) {
         left = true
     } else if (event.key === "d" || event.key === "D") {
         right = true
-    } else if (event.key === "Enter") {
+    }
+    if (event.key === "Enter") {
         fire = true
         bulletPlayers.push({
             fire: new componentRect(handle.x + handle.width / 2, handle.y, 20, 30, "image", bulletPlayer),
-            used: false
+            used: false,
+            sound : soundBullet.play()
         })
     }
 }
@@ -100,7 +103,8 @@ function keyupHandler(event) {
         left = false
     } else if (event.key === "d" || event.key === "D") {
         right = false
-    } else if (event.key === "Enter") {}
+    }
+    if (event.key === "Enter") {}
 }
 
 function controllHandler() {
@@ -124,6 +128,7 @@ function bulletHandle() {
         bulletPlayers.forEach(function (val) {
             if (val.used === false) {
                 val.fire.update()
+                val.sound
                 val.fire.y -= 5
             }
         })
@@ -152,6 +157,7 @@ function detectionBullets() {
                 enemy.enemy.y = -100
                 bullet.fire.x = -100
                 scorePlayer += 1
+                explode.play()
             }
         })
     })
@@ -180,14 +186,15 @@ function score() {
     game.context.fillText(`Score : ${scorePlayer}`, game.canvas.width - 40 * 3, 20, 100)
 }
 
-function incraseEnemny() {
-    if (scorePlayer === 100) {
-        scorePlayer = 100
-    } else if (scorePlayer % 20 === 0 && scorePlayer != 0) {
-        totalEnemy += 2
-        console.log(totalEnemy);
+function incraseEnemy() {
+    if (scorePlayer % 20 === 0 && scorePlayer != 0) {
+        if (totalEnemy === 100 || totalEnemy > 99 && totalEnemy < 100) {
+            totalEnemy = 100
+        } else {
+            totalEnemy += 2
+        }
     }
 
 }
 
-incrase = setInterval(incraseEnemny,1000)
+incrase = setInterval(incraseEnemy, 1000)

@@ -15,3 +15,16 @@ healths.src = "img/hearts.png"
 
 let points = new Image()
 points.src = "img/seven-pointed-star.png"
+
+let soundBullet = new Audio()
+soundBullet.src = "sound/gun-gunshot-01.mp3"
+
+let explode = new Audio()
+explode.src = "sound/explosion-01.mp3"
+
+let soundtrack = new Audio()
+soundtrack.src = "sound/SkyFire (Title Screen).ogg"
+
+document.querySelector(".play").addEventListener("click", function () {
+    document.querySelector('.header-game').style.display = "none"
+})

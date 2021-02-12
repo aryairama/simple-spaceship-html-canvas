@@ -1,0 +1,8 @@
+.bg-canvas {
+    display: block;
+    margin: auto;
+    background-image: url('/game3/img/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
